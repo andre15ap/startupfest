@@ -8,4 +8,5 @@ export const Text = styled.Text`
   color: ${props => props.color || COLORS.GRAY};
   font-family: ${props => props.font || FONTS.COMFORTAA_MEDIUM};
   align-self: ${props => props.font || 'center'};
+  text-align: justify;
 `;

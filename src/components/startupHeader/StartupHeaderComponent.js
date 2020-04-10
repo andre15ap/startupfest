@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import CustomText from '../../components/customText/CustomText';
-import { Container, Img, Text } from './styles';
+import { Container, Img } from './styles';
 
 function StartupHeaderComponent({ image, name, segment }) {
   const [imageUrl, setImageUrl] = useState(null);
@@ -18,11 +18,12 @@ function StartupHeaderComponent({ image, name, segment }) {
   useEffect(() => {
     getUrl();
   }, [image]);
+
   return (
     <Container>
       {imageUrl && <Img source={imageUrl} />}
-      <CustomText size={15}>{name}</CustomText>
-      <CustomText size={12}>{segment}</CustomText>
+      <CustomText size={20}>{name}</CustomText>
+      <CustomText size={15}>{segment}</CustomText>
     </Container>
   );
 }
