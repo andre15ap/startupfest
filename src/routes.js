@@ -1,10 +1,10 @@
 import React from 'react';
-import {StatusBar} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import { StatusBar } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import HomeScreen from './screens/home/HomeScreen';
-// import PaymentScreen from './screens/Payment/PaymentScreen';
+import DetailScreen from './screens/detail/DetailScreen';
 
 import COLORS from './config/colors';
 
@@ -25,13 +25,13 @@ function Routes() {
             headerShown: false,
           }}
         />
-        {/* <Stack.Screen
-          name="Payment"
-          component={PaymentScreen}
+        <Stack.Screen
+          name="Detail"
+          component={DetailScreen}
           options={{
             headerShown: false,
           }}
-        /> */}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

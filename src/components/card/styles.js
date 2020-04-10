@@ -2,13 +2,12 @@ import styled from 'styled-components/native';
 
 import COLORS from '../../config/colors';
 
-export const Container = styled.View`
-  flex: 1;
+export const Container = styled.TouchableOpacity`
   background-color: ${COLORS.WHITE};
   padding: 10px;
   elevation: 3;
   border-radius: 5px;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  margin: 10px 20px 10px 20px;
 `;
