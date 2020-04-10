@@ -9,10 +9,11 @@ import { Container, ContainerVote } from './styles';
 
 const initial = [0, 0, 0, 0, 0];
 
-function Voting({ name }) {
+function Voting({ name, action }) {
   const [stars, setStars] = useState(initial);
 
   const handlePress = position => {
+    action(position + 1);
     const newStars = stars.map((value, index) => {
       return index <= position ? 1 : 0;
     });

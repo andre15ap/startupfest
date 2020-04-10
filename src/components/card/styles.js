@@ -11,3 +11,10 @@ export const Container = styled.TouchableOpacity`
   justify-content: center;
   margin: 10px 20px 10px 20px;
 `;
+
+export const Check = styled.View`
+  position: absolute;
+  align-self: flex-end;
+  top: 0;
+  padding: 10px;
+`;

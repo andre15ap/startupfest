@@ -16,6 +16,7 @@ export const Img = styled.Image.attrs({
   width: ${size * 0.5}px;
   height: ${size * 0.5}px;
   align-self: center;
+  margin-top: 10px;
   margin-bottom: 10px;
   background-color: transparent;
 `;

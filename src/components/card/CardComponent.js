@@ -1,8 +1,9 @@
 import React from 'react';
-
+import { Icon } from 'react-native-elements';
 import StartupHeaderComponent from '../startupHeader/StartupHeaderComponent';
+import { Container, Check } from './styles';
 
-import { Container } from './styles';
+import COLORS from '../../config/colors';
 
 function CardComponent({ startup, onPress }) {
   const handlePress = () => {
@@ -11,6 +12,9 @@ function CardComponent({ startup, onPress }) {
   };
   return (
     <Container onPress={handlePress}>
+      <Check>
+        <Icon name="check" color={COLORS.SECONDARY} size={30} />
+      </Check>
       <StartupHeaderComponent
         image={startup.imageUrl}
         name={startup.name}
