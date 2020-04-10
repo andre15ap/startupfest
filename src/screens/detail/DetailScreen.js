@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import StartupHeader from '../../components/startupHeader/StartupHeaderComponent';
 import StartupBody from '../../components/startupBody/StartupBody';
-
-import { Icon } from 'react-native-elements';
+import Voting from '../../components/voting/Voting';
 
 import { Container } from './styles';
 
@@ -24,7 +23,9 @@ function DetailScreen({ route, navigation }) {
     <Container>
       <StartupHeader image={imageUrl} name={name} segment={segment} />
       <StartupBody text={description} />
-      <Icon name="star" color="#000" />
+      <Voting name="Proposta" />
+      <Voting name="Apresentação/Pitch" />
+      <Voting name="Desenvolvimento" />
     </Container>
   );
 }
