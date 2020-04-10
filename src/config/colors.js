@@ -9,4 +9,5 @@ export default {
   BLACK: '#000',
   GRAY: '#575757',
   GRAY_LIGHT: '#E3E3E3',
+  PRIMARY_TRANSPARENT: 'rgba(116, 85, 255, 0.4)',
 };

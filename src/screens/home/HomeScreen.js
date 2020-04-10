@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import CardComponent from '../../components/card/CardComponent';
 import CustomText from '../../components/customText/CustomText';
+import ButtonResult from '../../components/buttonResult/ButtonResult';
 
 import { Text } from 'react-native';
 import { Container, List, ContainerList } from './styles';
@@ -47,6 +48,7 @@ function HomeScreen({ navigation }) {
           <Text>Carregando</Text>
         )}
       </List>
+      <ButtonResult />
     </Container>
   );
 }

@@ -8,7 +8,7 @@ function StartupBody({ text }) {
   return (
     <Container>
       <Div />
-      <CustomText size={14}>{text}</CustomText>
+      <CustomText size={12}>{text}</CustomText>
     </Container>
   );
 }

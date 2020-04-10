@@ -5,13 +5,13 @@ import COLORS from '../../config/colors';
 export const Container = styled.View`
   flex-direction: row;
   width: 100%;
-  padding: 0 20px 0 20px;
+  padding: 0 30px 0 30px;
   justify-content: center;
 `;
 
 export const Div = styled.View`
-  width: 8px;
+  width: 5px;
   border-radius: 3px;
-  margin-right: 10px;
+  margin-right: 12px;
   background-color: ${COLORS.PRIMARY};
 `;
