@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { ActivityIndicator } from 'react-native';
 
 import StartupHeader from '../../components/startupHeader/StartupHeaderComponent';
 import StartupBody from '../../components/startupBody/StartupBody';
@@ -6,10 +7,12 @@ import Voting from '../../components/voting/Voting';
 import CustomButtom from '../../components/customButtom/CustomButtom';
 
 import { getVotes, setVotes } from '../../services/votesServices';
+import COLORS from '../../config/colors';
 
 import { Container } from './styles';
 
 function DetailScreen({ route, navigation }) {
+  const [loading, setLoading] = useState(true);
   const [imageUrl, setImageUrl] = useState('');
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -35,33 +38,44 @@ function DetailScreen({ route, navigation }) {
     setSegment(route.params.segment);
     setDescription(route.params.description);
     setVote(route.params.vote);
+    setLoading(false);
   }, []);
 
   return (
     <Container>
-      <StartupHeader image={imageUrl} name={name} segment={segment} />
-      <StartupBody text={description} />
+      {loading ? (
+        <ActivityIndicator size="large" color={COLORS.PRIMARY} />
+      ) : (
+        <>
+          <StartupHeader
+            image={imageUrl}
+            name={name}
+            segment={segment}
+          />
+          <StartupBody text={description} />
 
-      <Voting
-        action={setProposal}
-        name="Proposta"
-        vote={vote ? vote.proposal : 0}
-      />
-      <Voting
-        action={setPresentation}
-        name="Apresentação / Pitch"
-        vote={vote ? vote.presentation : 0}
-      />
-      <Voting
-        action={setDevelopment}
-        name="Desenvolvimento"
-        vote={vote ? vote.development : 0}
-      />
-      {renderConfirm() && (
-        <CustomButtom
-          text={vote ? 'Voltar' : 'Confirmar'}
-          action={handlePress}
-        />
+          <Voting
+            action={setProposal}
+            name="Proposta"
+            vote={vote ? vote.proposal : 0}
+          />
+          <Voting
+            action={setPresentation}
+            name="Apresentação / Pitch"
+            vote={vote ? vote.presentation : 0}
+          />
+          <Voting
+            action={setDevelopment}
+            name="Desenvolvimento"
+            vote={vote ? vote.development : 0}
+          />
+          {renderConfirm() && (
+            <CustomButtom
+              text={vote ? 'Voltar' : 'Confirmar'}
+              action={handlePress}
+            />
+          )}
+        </>
       )}
     </Container>
   );

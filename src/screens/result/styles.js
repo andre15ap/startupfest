@@ -19,3 +19,8 @@ export const ContainerTitle = styled.View`
   justify-content: ${props => props.align || 'flex-start'};
   flex-direction: row;
 `;
+
+export const Line = styled.View`
+  border-bottom-width: 1px;
+  border-color: red;
+`;

@@ -20,7 +20,7 @@ function ResultRow({ index, name, segment, image, note }) {
   const getStars = () => {
     const stars = [];
     for (let i = 0; i < 5; i++) {
-      stars.push(i < note);
+      stars.push(i < Math.round(note));
     }
     return stars;
   };

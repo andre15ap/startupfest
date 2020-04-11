@@ -29,7 +29,7 @@ function Voting({ name, action, quantid = 5, vote }) {
     <Container>
       <CustomText>{name}</CustomText>
       <ContainerVote>
-        <Stars stars={stars} onPress={handlePress} />
+        <Stars stars={stars} size={40} onPress={handlePress} />
       </ContainerVote>
     </Container>
   );

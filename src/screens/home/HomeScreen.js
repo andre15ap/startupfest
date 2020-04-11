@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Text } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 
 import CardComponent from '../../components/card/CardComponent';
 import CustomText from '../../components/customText/CustomText';
 import ButtonResult from '../../components/buttonResult/ButtonResult';
+
+import COLORS from '../../config/colors';
 
 import { Container, List } from './styles';
 
@@ -16,6 +18,7 @@ import {
 
 function HomeScreen({ navigation }) {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const getData = async () => {
     const votes = await getVotes();
@@ -26,6 +29,7 @@ function HomeScreen({ navigation }) {
       });
       setData(newData);
     }
+    setLoading(false);
   };
 
   const handlePress = (
@@ -46,6 +50,7 @@ function HomeScreen({ navigation }) {
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
+      setLoading(true);
       getData();
       // cleanVotes();
     });
@@ -56,7 +61,7 @@ function HomeScreen({ navigation }) {
     <Container>
       <List>
         <CustomText size={20}>Escolha sua StartUp!</CustomText>
-        {data.length > 0 ? (
+        {!loading ? (
           data.map(item => (
             <CardComponent
               key={item.name}
@@ -65,7 +70,7 @@ function HomeScreen({ navigation }) {
             />
           ))
         ) : (
-          <Text>Carregando</Text>
+          <ActivityIndicator size="large" color={COLORS.PRIMARY} />
         )}
       </List>
       <ButtonResult navigation={navigation} />
