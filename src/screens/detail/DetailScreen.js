@@ -32,12 +32,23 @@ function DetailScreen({ route, navigation }) {
     return !!(proposal && presentation && development) || vote;
   };
 
+  const getVote = async () => {
+    const votes = await getVotes();
+    if (votes) {
+      const vote = votes.filter(value => {
+        return value.name === route.params.name;
+      });
+      setVote(vote[0]);
+    }
+  };
+
   useEffect(() => {
     setImageUrl(route.params.imageUrl);
     setName(route.params.name);
     setSegment(route.params.segment);
     setDescription(route.params.description);
-    setVote(route.params.vote);
+    // setVote(route.params.vote);
+    getVote();
     setLoading(false);
   }, []);
 

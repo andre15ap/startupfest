@@ -9,7 +9,9 @@ import COLORS from '../../config/colors';
 
 import { Container, List } from './styles';
 
-import DATA from '../../services/apiTest';
+import { useQuery } from '@apollo/react-hooks';
+import { GET_STARTUPS } from '../../services/apolloQueries';
+
 import {
   getVotes,
   setVotes,
@@ -17,41 +19,33 @@ import {
 } from '../../services/votesServices';
 
 function HomeScreen({ navigation }) {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [startups, setStartups] = useState([]);
+  const { loading, error, data } = useQuery(GET_STARTUPS);
+  // console.log(data);
 
-  const getData = async () => {
-    const votes = await getVotes();
-    if (votes) {
-      const newData = DATA.map(value => {
-        const newVote = votes.filter(v => v.name === value.name);
-        return { ...value, vote: newVote[0] };
-      });
-      setData(newData);
-    }
-    setLoading(false);
-  };
+  // const getData = async () => {
+  //   const votes = await getVotes();
+  //   if (votes) {
+  //     const newData = DATA.map(value => {
+  //       const newVote = votes.filter(v => v.name === value.name);
+  //       return { ...value, vote: newVote[0] };
+  //     });
+  //     setData(newData);
+  //   }
+  //   setLoading(false);
+  // };
 
-  const handlePress = (
-    name,
-    description,
-    imageUrl,
-    segment,
-    vote,
-  ) => {
+  const handlePress = (name, description, imageUrl, segment) => {
     navigation.navigate('Detail', {
       name,
       description,
       imageUrl,
       segment,
-      vote,
     });
   };
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      setLoading(true);
-      getData();
       // cleanVotes();
     });
     return unsubscribe;
@@ -62,9 +56,10 @@ function HomeScreen({ navigation }) {
       <List>
         <CustomText size={20}>Escolha sua StartUp!</CustomText>
         {!loading ? (
-          data.map(item => (
+          data.allStartups.map(item => (
             <CardComponent
               key={item.name}
+              navigation={navigation}
               startup={item}
               onPress={handlePress}
             />

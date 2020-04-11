@@ -7,12 +7,16 @@ import HomeScreen from './screens/home/HomeScreen';
 import DetailScreen from './screens/detail/DetailScreen';
 import ResultScreen from './screens/result/ResultScreen';
 
+// import { ApolloProvider } from '@apollo/react-hooks';
+// import client from './services/apolloClient';
+
 import COLORS from './config/colors';
 
 const Stack = createStackNavigator();
 
 function Routes() {
   return (
+    // <ApolloProvider client={client}>
     <NavigationContainer>
       <StatusBar
         backgroundColor={COLORS.PRIMARY_DARK}
@@ -42,6 +46,7 @@ function Routes() {
         />
       </Stack.Navigator>
     </NavigationContainer>
+    // </ApolloProvider>
   );
 }
 
