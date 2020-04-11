@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import HomeScreen from './screens/home/HomeScreen';
 import DetailScreen from './screens/detail/DetailScreen';
+import ResultScreen from './screens/result/ResultScreen';
 
 import COLORS from './config/colors';
 
@@ -28,6 +29,13 @@ function Routes() {
         <Stack.Screen
           name="Detail"
           component={DetailScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Result"
+          component={ResultScreen}
           options={{
             headerShown: false,
           }}

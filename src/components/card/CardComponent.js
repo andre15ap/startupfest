@@ -7,14 +7,17 @@ import COLORS from '../../config/colors';
 
 function CardComponent({ startup, onPress }) {
   const handlePress = () => {
-    const { imageUrl, name, Segment, description } = startup;
-    onPress(name, description, imageUrl, Segment.name);
+    const { imageUrl, name, Segment, description, vote } = startup;
+    onPress(name, description, imageUrl, Segment.name, vote);
   };
+
   return (
     <Container onPress={handlePress}>
-      <Check>
-        <Icon name="check" color={COLORS.SECONDARY} size={30} />
-      </Check>
+      {startup.vote && (
+        <Check>
+          <Icon name="check" color={COLORS.SECONDARY} size={30} />
+        </Check>
+      )}
       <StartupHeaderComponent
         image={startup.imageUrl}
         name={startup.name}

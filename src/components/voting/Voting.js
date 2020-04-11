@@ -1,43 +1,36 @@
-import React, { useState } from 'react';
-
-import { Icon } from 'react-native-elements';
+import React, { useEffect, useState } from 'react';
 
 import CustomText from '../customText/CustomText';
-import COLORS from '../../config/colors';
+import Stars from '../stars/Stars';
 
 import { Container, ContainerVote } from './styles';
 
-const initial = [0, 0, 0, 0, 0];
-
-function Voting({ name, action }) {
-  const [stars, setStars] = useState(initial);
+function Voting({ name, action, quantid = 5, vote }) {
+  const [stars, setStars] = useState([]);
 
   const handlePress = position => {
+    if (vote) return;
     action(position + 1);
     const newStars = stars.map((value, index) => {
-      return index <= position ? 1 : 0;
+      return index <= position;
     });
-
     setStars(newStars);
   };
 
-  const render = () => {
-    return stars.map((value, index) => {
-      return (
-        <Icon
-          key={Math.rand}
-          name="star"
-          color={value ? COLORS.BLACK : COLORS.GRAY_LIGHT}
-          size={35}
-          onPress={() => handlePress(index)}
-        />
-      );
-    });
-  };
+  useEffect(() => {
+    const newStars = [];
+    for (let i = 0; i < quantid; i++) {
+      newStars.push(i < vote);
+    }
+    setStars(newStars);
+  }, [vote]);
+
   return (
     <Container>
       <CustomText>{name}</CustomText>
-      <ContainerVote>{render()}</ContainerVote>
+      <ContainerVote>
+        <Stars stars={stars} onPress={handlePress} />
+      </ContainerVote>
     </Container>
   );
 }

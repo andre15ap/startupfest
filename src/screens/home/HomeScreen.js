@@ -1,36 +1,56 @@
 import React, { useEffect, useState } from 'react';
+import { Text } from 'react-native';
 
 import CardComponent from '../../components/card/CardComponent';
 import CustomText from '../../components/customText/CustomText';
 import ButtonResult from '../../components/buttonResult/ButtonResult';
 
-import { Text } from 'react-native';
-import { Container, List, ContainerList } from './styles';
+import { Container, List } from './styles';
 
 import DATA from '../../services/apiTest';
+import {
+  getVotes,
+  setVotes,
+  cleanVotes,
+} from '../../services/votesServices';
 
 function HomeScreen({ navigation }) {
   const [data, setData] = useState([]);
 
-  const getData = () => {
-    setData(DATA);
+  const getData = async () => {
+    const votes = await getVotes();
+    if (votes) {
+      const newData = DATA.map(value => {
+        const newVote = votes.filter(v => v.name === value.name);
+        return { ...value, vote: newVote[0] };
+      });
+      setData(newData);
+    }
   };
 
-  const handlePress = (name, description, imageUrl, segment) => {
+  const handlePress = (
+    name,
+    description,
+    imageUrl,
+    segment,
+    vote,
+  ) => {
     navigation.navigate('Detail', {
       name,
       description,
       imageUrl,
       segment,
+      vote,
     });
   };
 
   useEffect(() => {
-    // DATA.map(value => {
-    //   console.log(value.Segment);
-    // });
-    getData();
-  }, []);
+    const unsubscribe = navigation.addListener('focus', () => {
+      getData();
+      // cleanVotes();
+    });
+    return unsubscribe;
+  }, [navigation]);
 
   return (
     <Container>
@@ -48,7 +68,7 @@ function HomeScreen({ navigation }) {
           <Text>Carregando</Text>
         )}
       </List>
-      <ButtonResult />
+      <ButtonResult navigation={navigation} />
     </Container>
   );
 }

@@ -9,6 +9,7 @@ const size = Dimensions.get('window').width;
 export const Container = styled.View`
   padding: 10px 0 10px 0;
 `;
+Container;
 
 export const Img = styled.Image.attrs({
   resizeMode: 'stretch',
@@ -19,6 +20,7 @@ export const Img = styled.Image.attrs({
   margin-top: 10px;
   margin-bottom: 10px;
   background-color: transparent;
+  border-radius: 5px;
 `;
 export const Text = styled.Text`
   font-size: ${props => props.size || 12}px;

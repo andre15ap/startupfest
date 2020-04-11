@@ -3,8 +3,12 @@ import React from 'react';
 import { Button, Text } from './styles';
 
 function ButtonResult({ navigation }) {
+  const handlePress = () => {
+    navigation.navigate('Result');
+  };
+
   return (
-    <Button onPress={() => {}}>
+    <Button onPress={handlePress}>
       <Text>Resultados</Text>
     </Button>
   );
