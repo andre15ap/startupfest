@@ -11,7 +11,10 @@ function ButtonResult({ navigation, data }) {
     if (!result) {
       AlertComponent(
         'Atenção',
-        'Vote em todas as StartUps para ter acesso aos resultados. \n Clique no card \n escolhar as três notas \n Confirmar.',
+        'Vote em todas as StartUps para ter acesso aos resultados. \n' +
+          ' Clique no card \n' +
+          ' Escolhar as três notas \n' +
+          ' Clique em Confirmar.',
       );
       return;
     }

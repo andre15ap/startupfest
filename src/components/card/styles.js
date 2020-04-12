@@ -4,7 +4,7 @@ import COLORS from '../../config/colors';
 
 export const Container = styled.TouchableOpacity`
   background-color: ${COLORS.WHITE};
-  padding: 10px;
+  padding: 10px 25px;
   elevation: 3;
   border-radius: 5px;
   align-items: center;
