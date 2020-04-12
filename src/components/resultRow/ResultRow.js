@@ -10,6 +10,7 @@ import {
   Img,
   ContainerColumn,
   ContainerRow,
+  ContainerImage,
 } from './styles';
 
 function ResultRow({ index, name, segment, image, note }) {
@@ -34,8 +35,10 @@ function ResultRow({ index, name, segment, image, note }) {
   }, [image]);
   return (
     <Container>
-      <CustomText size={22}>{index}º</CustomText>
-      <Img source={imageUrl} />
+      <CustomText size={20}>{index}º</CustomText>
+      <ContainerImage>
+        <Img source={imageUrl} />
+      </ContainerImage>
       <ContainerColumn>
         <CustomText align="flex-start" size={18}>
           {name}

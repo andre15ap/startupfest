@@ -29,19 +29,11 @@ const getVotesService = async () => {
   try {
     const listVotes = [];
     await votes.get().then(querySnapshot => {
-      //   console.log('Total users: ', querySnapshot.size);
-
       querySnapshot.forEach(documentSnapshot => {
-        // console.log(
-        //   'User ID: ',
-        //   documentSnapshot.id,
-        //   documentSnapshot.data(),
-        // );
         listVotes.push(documentSnapshot.data());
       });
     });
 
-    console.log('deu certo');
     return listVotes;
   } catch (e) {
     console.log(e);

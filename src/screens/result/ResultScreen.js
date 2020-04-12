@@ -3,82 +3,44 @@ import React, { useEffect, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 
 import CustomText from '../../components/customText/CustomText';
+import CustomButtom from '../../components/customButtom/CustomButtom';
 import ResultRow from '../../components/resultRow/ResultRow';
 
 import { getVotesService } from '../../services/firebaseService';
-import ordenateByKey from '../../services/arrayService';
+import getResults from '../../services/votesResultService';
+import { cleanVotes } from '../../services/votesServices';
 
 import COLORS from '../../config/colors';
 
-import { Container, ContainerRow, ContainerTitle } from './styles';
+import {
+  Container,
+  ContainerRow,
+  ContainerTitle,
+  ContainerButton,
+} from './styles';
 
-function ResultScreen() {
+function ResultScreen({ navigation }) {
   const [proposal, setProposal] = useState([]);
   const [presentation, setPresentation] = useState([]);
   const [development, setDevelopment] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const getVotes = data => {
-    const votes = {};
-    data.forEach(value => {
-      const {
-        name,
-        segment,
-        imageUrl,
-        development,
-        presentation,
-        proposal,
-      } = value;
-      if (votes.hasOwnProperty(name)) {
-        votes[name].development += development;
-        votes[name].presentation += presentation;
-        votes[name].proposal += proposal;
-        votes[name].qtd += 1;
-      } else {
-        votes[name] = {
-          name,
-          imageUrl,
-          segment,
-          development,
-          presentation,
-          proposal,
-          qtd: 1,
-        };
-      }
-    });
+    const {
+      ordProposal,
+      ordPresentation,
+      ordDevelopment,
+    } = getResults(data);
 
-    calculeMedia(votes);
+    setProposal(ordProposal);
+    setPresentation(ordPresentation);
+    setDevelopment(ordDevelopment);
+    setLoading(false);
   };
 
-  const calculeMedia = votes => {
-    const listProposal = [];
-    const listPresentation = [];
-    const listDevelopment = [];
-
-    for (let vote in votes) {
-      const {
-        imageUrl,
-        name,
-        segment,
-        development,
-        presentation,
-        proposal,
-        qtd,
-      } = votes[vote];
-      const props = { imageUrl, name, segment };
-
-      listProposal.push({ med: proposal / qtd, ...props });
-      listPresentation.push({ med: presentation / qtd, ...props });
-      listDevelopment.push({ med: development / qtd, ...props });
-    }
-    const ordProposal = ordenateByKey(listProposal, 'med');
-    const ordPresentation = ordenateByKey(listPresentation, 'med');
-    const ordDevelopment = ordenateByKey(listDevelopment, 'med');
-
-    setProposal(ordProposal.slice(0, 3));
-    setPresentation(ordPresentation.slice(0, 3));
-    setDevelopment(ordDevelopment.slice(0, 3));
-    setLoading(false);
+  const voteNow = async () => {
+    await cleanVotes();
+    navigation.navigate('Home');
   };
 
   const getService = async () => {
@@ -142,7 +104,7 @@ function ResultScreen() {
             development.map((value, index) => (
               <ContainerRow>
                 <ResultRow
-                  key={value}
+                  key={`${value}${Math.rand}`}
                   index={index + 1}
                   name={value.name}
                   segment={value.segment}
@@ -155,6 +117,18 @@ function ResultScreen() {
       ) : (
         <ActivityIndicator size="large" color={COLORS.PRIMARY} />
       )}
+
+      <ContainerButton>
+        <CustomButtom
+          text={'Voltar'}
+          action={() => navigation.navigate('Home')}
+        />
+        <CustomButtom
+          text={'Votar Novamente'}
+          action={voteNow}
+          color={COLORS.PRIMARY}
+        />
+      </ContainerButton>
     </Container>
   );
 }

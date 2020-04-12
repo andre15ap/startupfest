@@ -24,16 +24,19 @@ function DetailScreen({ route, navigation }) {
   const [development, setDevelopment] = useState(0);
 
   const handlePress = async () => {
-    await setVoteService(
-      name,
-      segment,
-      imageUrl,
-      development,
-      presentation,
-      proposal,
-    );
-    !vote &&
-      (await setVotes(name, proposal, presentation, development));
+    if (!vote) {
+      setLoading(true);
+      await setVoteService(
+        name,
+        segment,
+        imageUrl,
+        development,
+        presentation,
+        proposal,
+      );
+      await setVotes(name, proposal, presentation, development);
+      setLoading(false);
+    }
     navigation.goBack();
   };
 
@@ -56,7 +59,6 @@ function DetailScreen({ route, navigation }) {
     setName(route.params.name);
     setSegment(route.params.segment);
     setDescription(route.params.description);
-    // setVote(route.params.vote);
     getVote();
     setLoading(false);
   }, []);
@@ -93,6 +95,7 @@ function DetailScreen({ route, navigation }) {
             <CustomButtom
               text={vote ? 'Voltar' : 'Confirmar'}
               action={handlePress}
+              color={vote ? false : COLORS.PRIMARY}
             />
           )}
         </>

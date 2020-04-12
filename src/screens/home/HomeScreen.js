@@ -7,33 +7,13 @@ import ButtonResult from '../../components/buttonResult/ButtonResult';
 
 import COLORS from '../../config/colors';
 
-import { Container, List } from './styles';
+import { Container, List, ContainerTitle } from './styles';
 
 import { useQuery } from '@apollo/react-hooks';
 import { GET_STARTUPS } from '../../services/apolloQueries';
 
-import {
-  getVotes,
-  setVotes,
-  cleanVotes,
-} from '../../services/votesServices';
-
 function HomeScreen({ navigation }) {
-  const [startups, setStartups] = useState([]);
   const { loading, error, data } = useQuery(GET_STARTUPS);
-  // console.log(data);
-
-  // const getData = async () => {
-  //   const votes = await getVotes();
-  //   if (votes) {
-  //     const newData = DATA.map(value => {
-  //       const newVote = votes.filter(v => v.name === value.name);
-  //       return { ...value, vote: newVote[0] };
-  //     });
-  //     setData(newData);
-  //   }
-  //   setLoading(false);
-  // };
 
   const handlePress = (name, description, imageUrl, segment) => {
     navigation.navigate('Detail', {
@@ -46,7 +26,7 @@ function HomeScreen({ navigation }) {
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      // cleanVotes();
+      //getIsResult();
     });
     return unsubscribe;
   }, [navigation]);
@@ -54,7 +34,9 @@ function HomeScreen({ navigation }) {
   return (
     <Container>
       <List>
-        <CustomText size={20}>Escolha sua StartUp!</CustomText>
+        <ContainerTitle>
+          <CustomText size={20}>Escolha sua StartUp!</CustomText>
+        </ContainerTitle>
         {!loading ? (
           data.allStartups.map(item => (
             <CardComponent
@@ -68,7 +50,10 @@ function HomeScreen({ navigation }) {
           <ActivityIndicator size="large" color={COLORS.PRIMARY} />
         )}
       </List>
-      <ButtonResult navigation={navigation} />
+      <ButtonResult
+        data={data ? data.allStartups : []}
+        navigation={navigation}
+      />
     </Container>
   );
 }

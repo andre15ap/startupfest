@@ -6,15 +6,16 @@ export const Button = styled.TouchableOpacity`
   position: absolute;
   align-items: center;
   justify-content: center;
-  border-radius: 50px;
-  background: ${COLORS.PRIMARY_TRANSPARENT};
-  elevation: 1;
+  border-radius: 25px;
+  background-color: ${COLORS.PRIMARY_TRANSPARENT};
+  /* elevation: 1; */
   bottom: 10px;
   right: 10px;
-  padding: 15px 10px;
+  padding: 10px 10px;
 `;
 
 export const Text = styled.Text`
   color: ${COLORS.WHITE};
   font-size: 12px;
+  background: ${COLORS.TRANSPARENT};
 `;

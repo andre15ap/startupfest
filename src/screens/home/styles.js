@@ -6,8 +6,8 @@ export const Container = styled.View`
   align-items: center;
 `;
 
-export const ContainerList = styled.View`
-  /* flex: 1; */
+export const ContainerTitle = styled.View`
+  margin: 10px 0 5px 0;
 `;
 
 export const List = styled.ScrollView.attrs({
