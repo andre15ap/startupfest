@@ -67,7 +67,11 @@ function DetailScreen({ route, navigation }) {
   return (
     <Container>
       {loading ? (
-        <ActivityIndicator size="large" color={COLORS.PRIMARY} />
+        <ActivityIndicator
+          style={{ marginTop: 50 }}
+          size="large"
+          color={COLORS.PRIMARY}
+        />
       ) : (
         <>
           <StartupHeader
