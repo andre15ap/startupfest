@@ -7,6 +7,7 @@ import Voting from '../../components/voting/Voting';
 import CustomButtom from '../../components/customButtom/CustomButtom';
 
 import { getVotes, setVotes } from '../../services/votesServices';
+import { setVoteService } from '../../services/firebaseService';
 import COLORS from '../../config/colors';
 
 import { Container } from './styles';
@@ -23,6 +24,14 @@ function DetailScreen({ route, navigation }) {
   const [development, setDevelopment] = useState(0);
 
   const handlePress = async () => {
+    await setVoteService(
+      name,
+      segment,
+      imageUrl,
+      development,
+      presentation,
+      proposal,
+    );
     !vote &&
       (await setVotes(name, proposal, presentation, development));
     navigation.goBack();

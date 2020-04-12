@@ -5,7 +5,7 @@ import { ActivityIndicator } from 'react-native';
 import CustomText from '../../components/customText/CustomText';
 import ResultRow from '../../components/resultRow/ResultRow';
 
-import data from '../../services/apiVotesTest';
+import { getVotesService } from '../../services/firebaseService';
 import ordenateByKey from '../../services/arrayService';
 
 import COLORS from '../../config/colors';
@@ -18,7 +18,7 @@ function ResultScreen() {
   const [development, setDevelopment] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const getVotes = () => {
+  const getVotes = data => {
     const votes = {};
     data.forEach(value => {
       const {
@@ -81,8 +81,13 @@ function ResultScreen() {
     setLoading(false);
   };
 
+  const getService = async () => {
+    const response = await getVotesService();
+    getVotes(response);
+  };
+
   useEffect(() => {
-    getVotes();
+    getService();
   }, []);
 
   return (

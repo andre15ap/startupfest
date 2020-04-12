@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "409608709289",
+    "firebase_url": "https://startupfest-481cb.firebaseio.com",
+    "project_id": "startupfest-481cb",
+    "storage_bucket": "startupfest-481cb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:409608709289:android:7c6da2f6118c45d6bdb5b8",
+        "android_client_info": {
+          "package_name": "com.startupfest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "409608709289-mgoll397n5k217c7b1fd7foputfpq85a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMXo_YO8kwV3wpv5YIP8o3KhnRn72xELU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "409608709289-mgoll397n5k217c7b1fd7foputfpq85a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
