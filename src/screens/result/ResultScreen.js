@@ -5,6 +5,7 @@ import { ActivityIndicator } from 'react-native';
 import CustomText from '../../components/customText/CustomText';
 import CustomButtom from '../../components/customButtom/CustomButtom';
 import ResultRow from '../../components/resultRow/ResultRow';
+import ButtonBack from '../../components/buttonBack/ButtonBack';
 
 import { getVotesService } from '../../services/firebaseService';
 import getResults from '../../services/votesResultService';
@@ -49,11 +50,19 @@ function ResultScreen({ navigation }) {
   };
 
   useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      getService();
+    });
+    return unsubscribe;
+  }, [navigation]);
+
+  useEffect(() => {
     getService();
   }, []);
 
   return (
     <Container>
+      {/* <ButtonBack navigation={navigation} /> */}
       <ContainerTitle align="center">
         <CustomText size={20}>Resultados</CustomText>
       </ContainerTitle>
@@ -120,11 +129,7 @@ function ResultScreen({ navigation }) {
 
       <ContainerButton>
         <CustomButtom
-          text={'Voltar'}
-          action={() => navigation.navigate('Home')}
-        />
-        <CustomButtom
-          text={'Votar Novamente'}
+          text={'Avaliar Novamente'}
           action={voteNow}
           color={COLORS.PRIMARY}
         />

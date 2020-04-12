@@ -11,3 +11,8 @@ export const ContainerVote = styled.View`
   margin-bottom: 10px;
   justify-content: center;
 `;
+
+export const ContainerRoew = styled.TouchableOpacity`
+  flex-direction: row;
+  justify-content: center;
+`;

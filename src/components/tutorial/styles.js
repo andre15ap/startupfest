@@ -8,10 +8,9 @@ export const Button = styled.TouchableOpacity`
   justify-content: center;
   border-radius: 25px;
   background-color: ${COLORS.PRIMARY_TRANSPARENT};
-  /* elevation: 1; */
   bottom: 10px;
   right: 10px;
-  padding: 10px 10px;
+  padding: 10px 12px;
 `;
 
 export const Text = styled.Text`

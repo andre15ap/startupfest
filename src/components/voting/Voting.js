@@ -1,11 +1,22 @@
 import React, { useEffect, useState } from 'react';
 
+import { Icon } from 'react-native-elements';
+
 import CustomText from '../customText/CustomText';
 import Stars from '../stars/Stars';
+import AlertComponent from '../alert/AlertComponent';
 
-import { Container, ContainerVote } from './styles';
+import COLORS from '../../config/colors';
 
-function Voting({ name, action, quantid = 5, vote }) {
+import { Container, ContainerVote, ContainerRoew } from './styles';
+
+function Voting({
+  name,
+  description = '',
+  action,
+  quantid = 5,
+  vote,
+}) {
   const [stars, setStars] = useState([]);
 
   const handlePress = position => {
@@ -15,6 +26,10 @@ function Voting({ name, action, quantid = 5, vote }) {
       return index <= position;
     });
     setStars(newStars);
+  };
+
+  const handleTuto = () => {
+    AlertComponent(name, description);
   };
 
   useEffect(() => {
@@ -27,7 +42,15 @@ function Voting({ name, action, quantid = 5, vote }) {
 
   return (
     <Container>
-      <CustomText>{name}</CustomText>
+      <ContainerRoew onPress={handleTuto}>
+        <CustomText>{name}</CustomText>
+        <Icon
+          name="md-alert"
+          type="ionicon"
+          size={15}
+          color={COLORS.PRIMARY_TRANSPARENT}
+        />
+      </ContainerRoew>
       <ContainerVote>
         <Stars stars={stars} size={40} onPress={handlePress} />
       </ContainerVote>

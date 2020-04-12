@@ -1,14 +1,5 @@
 import AsyncStorage from '@react-native-community/async-storage';
 
-// [
-//   {
-//     name: '',
-//     proposal: 0,
-//     presentation: 0,
-//     development: 0,
-//   },
-// ];
-
 const getVotes = async () => {
   try {
     const votes = await AsyncStorage.getItem('@votes');

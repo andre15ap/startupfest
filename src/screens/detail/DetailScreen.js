@@ -2,16 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 
 import StartupHeader from '../../components/startupHeader/StartupHeaderComponent';
-import CardComponent from '../../components/card/CardComponent';
 import StartupBody from '../../components/startupBody/StartupBody';
 import Voting from '../../components/voting/Voting';
 import CustomButtom from '../../components/customButtom/CustomButtom';
+import Tutorial from '../../components/tutorial/Tutorial';
+import ButtonBack from '../../components/buttonBack/ButtonBack';
 
 import { getVotes, setVotes } from '../../services/votesServices';
 import { setVoteService } from '../../services/firebaseService';
 import COLORS from '../../config/colors';
 
-import { Container } from './styles';
+import { Container, Scroll } from './styles';
 
 function DetailScreen({ route, navigation }) {
   const [loading, setLoading] = useState(true);
@@ -42,7 +43,7 @@ function DetailScreen({ route, navigation }) {
   };
 
   const renderConfirm = () => {
-    return !!(proposal && presentation && development) || vote;
+    return !!(proposal && presentation && development);
   };
 
   const getVote = async () => {
@@ -66,45 +67,52 @@ function DetailScreen({ route, navigation }) {
 
   return (
     <Container>
-      {loading ? (
-        <ActivityIndicator
-          style={{ marginTop: 50 }}
-          size="large"
-          color={COLORS.PRIMARY}
-        />
-      ) : (
-        <>
-          <StartupHeader
-            image={imageUrl}
-            name={name}
-            segment={segment}
+      <Scroll>
+        <ButtonBack navigation={navigation} />
+        {loading ? (
+          <ActivityIndicator
+            style={{ marginTop: 50 }}
+            size="large"
+            color={COLORS.PRIMARY}
           />
-          <StartupBody text={description} />
-
-          <Voting
-            action={setProposal}
-            name="Proposta"
-            vote={vote ? vote.proposal : 0}
-          />
-          <Voting
-            action={setPresentation}
-            name="Apresentação / Pitch"
-            vote={vote ? vote.presentation : 0}
-          />
-          <Voting
-            action={setDevelopment}
-            name="Desenvolvimento"
-            vote={vote ? vote.development : 0}
-          />
-          {renderConfirm() && (
-            <CustomButtom
-              text={vote ? 'Voltar' : 'Confirmar'}
-              action={handlePress}
-              color={vote ? false : COLORS.PRIMARY}
+        ) : (
+          <>
+            <StartupHeader
+              image={imageUrl}
+              name={name}
+              segment={segment}
             />
-          )}
-        </>
-      )}
+            <StartupBody text={description} />
+
+            <Voting
+              action={setProposal}
+              name="Proposta"
+              description="Se a ideia / proposta agradou o ouvinte e teve um bom impacto"
+              vote={vote ? vote.proposal : 0}
+            />
+            <Voting
+              action={setPresentation}
+              name="Apresentação / Pitch"
+              description="Se a startup soube demonstrar a sua proposta"
+              vote={vote ? vote.presentation : 0}
+            />
+            <Voting
+              action={setDevelopment}
+              name="Desenvolvimento"
+              description="No estagio atual do produto / serviço, atende bem a proposta?"
+              vote={vote ? vote.development : 0}
+            />
+            {renderConfirm() && (
+              <CustomButtom
+                text={'Confirmar'}
+                action={handlePress}
+                color={COLORS.PRIMARY}
+              />
+            )}
+          </>
+        )}
+      </Scroll>
+      <Tutorial detail={true} />
     </Container>
   );
 }

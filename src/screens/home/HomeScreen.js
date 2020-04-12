@@ -3,7 +3,7 @@ import { ActivityIndicator, RefreshControl } from 'react-native';
 
 import CardComponent from '../../components/card/CardComponent';
 import CustomText from '../../components/customText/CustomText';
-import ButtonResult from '../../components/buttonResult/ButtonResult';
+import Tutorial from '../../components/tutorial/Tutorial';
 
 import COLORS from '../../config/colors';
 
@@ -26,11 +26,9 @@ function HomeScreen({ navigation }) {
   };
 
   const onRefresh = async () => {
-    console.log('-- chamado --');
     setRefreshing(true);
     try {
       await refetch();
-      console.log(' feito');
     } catch (e) {
       console.log(e);
     }
@@ -84,10 +82,7 @@ function HomeScreen({ navigation }) {
           <ActivityIndicator size="large" color={COLORS.SECONDARY} />
         )}
       </List>
-      <ButtonResult
-        data={data ? data.allStartups : []}
-        navigation={navigation}
-      />
+      <Tutorial />
     </Container>
   );
 }

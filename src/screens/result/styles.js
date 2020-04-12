@@ -4,6 +4,7 @@ import COLORS from '../../config/colors';
 
 export const Container = styled.ScrollView.attrs({
   flex: 1,
+  // paddingHorizontal: 10,
 })``;
 
 export const ContainerRow = styled.View`
