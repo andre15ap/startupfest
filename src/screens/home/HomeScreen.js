@@ -42,12 +42,15 @@ function HomeScreen({ navigation }) {
             <CardComponent
               key={item.name}
               navigation={navigation}
-              startup={item}
+              name={item.name}
+              description={item.description}
+              imageUrl={item.imageUrl}
+              segment={item.Segment.name}
               onPress={handlePress}
             />
           ))
         ) : (
-          <ActivityIndicator size="large" color={COLORS.PRIMARY} />
+          <ActivityIndicator size="large" color={COLORS.SECONDARY} />
         )}
       </List>
       <ButtonResult

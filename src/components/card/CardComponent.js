@@ -7,11 +7,17 @@ import { getVotes } from '../../services/votesServices';
 
 import { Container, Check } from './styles';
 
-function CardComponent({ navigation, startup, onPress }) {
+function CardComponent({
+  navigation,
+  name,
+  description,
+  imageUrl,
+  segment,
+  onPress,
+}) {
   const [isVote, setIsVote] = useState(false);
   const handlePress = () => {
-    const { imageUrl, name, Segment, description, vote } = startup;
-    onPress(name, description, imageUrl, Segment.name, vote);
+    onPress(name, description, imageUrl, segment);
   };
 
   const getVote = async startupName => {
@@ -26,13 +32,13 @@ function CardComponent({ navigation, startup, onPress }) {
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      getVote(startup.name);
+      getVote(name);
     });
     return unsubscribe;
   }, [navigation]);
 
   useEffect(() => {
-    getVote(startup.name);
+    getVote(name);
   }, []);
 
   return (
@@ -43,9 +49,9 @@ function CardComponent({ navigation, startup, onPress }) {
         </Check>
       )}
       <StartupHeaderComponent
-        image={startup.imageUrl}
-        name={startup.name}
-        segment={startup.Segment.name}
+        image={imageUrl}
+        name={name}
+        segment={segment}
       />
     </Container>
   );

@@ -3,13 +3,12 @@ import React, { useEffect, useState } from 'react';
 import CustomText from '../../components/customText/CustomText';
 
 import { getUrl } from '../../services/imageService';
+import IMAGES from '../../config/images';
 
 import { Container, Img } from './styles';
 
 function StartupHeaderComponent({ image, name, segment }) {
-  const [imageUrl, setImageUrl] = useState(
-    require('../../assets/images/placeholder.png'),
-  );
+  const [imageUrl, setImageUrl] = useState(IMAGES.PLACEHOLDER);
 
   const getImageUrl = async () => {
     setImageUrl(await getUrl(image));

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 
 import StartupHeader from '../../components/startupHeader/StartupHeaderComponent';
+import CardComponent from '../../components/card/CardComponent';
 import StartupBody from '../../components/startupBody/StartupBody';
 import Voting from '../../components/voting/Voting';
 import CustomButtom from '../../components/customButtom/CustomButtom';
