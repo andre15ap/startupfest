@@ -70,7 +70,7 @@ function ResultScreen({ navigation }) {
       {!loading ? (
         <>
           <ContainerTitle>
-            <CustomText size={20}>Proposta</CustomText>
+            <CustomText size={18}>Proposta</CustomText>
           </ContainerTitle>
 
           {proposal &&
@@ -88,7 +88,7 @@ function ResultScreen({ navigation }) {
             ))}
 
           <ContainerTitle>
-            <CustomText size={20}>Apresentação / Pitch</CustomText>
+            <CustomText size={18}>Apresentação / Pitch</CustomText>
           </ContainerTitle>
 
           {presentation &&
@@ -106,7 +106,7 @@ function ResultScreen({ navigation }) {
             ))}
 
           <ContainerTitle>
-            <CustomText size={20}>Desenvolvimento</CustomText>
+            <CustomText size={18}>Desenvolvimento</CustomText>
           </ContainerTitle>
 
           {development &&

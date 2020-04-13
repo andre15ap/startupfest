@@ -35,20 +35,20 @@ function ResultRow({ index, name, segment, image, note }) {
   }, [image]);
   return (
     <Container>
-      <CustomText size={20}>{index}º</CustomText>
+      <CustomText size={18}>{index}º</CustomText>
       <ContainerImage>
         <Img source={imageUrl} />
       </ContainerImage>
       <ContainerColumn>
-        <CustomText align="flex-start" size={18}>
+        <CustomText align="flex-start" size={16}>
           {name}
         </CustomText>
-        <CustomText align="flex-start" size={14}>
+        <CustomText align="flex-start" size={12}>
           {segment}
         </CustomText>
         <ContainerRow>
-          <Stars stars={getStars()} size={22} />
-          <CustomText align="flex-start" size={18}>
+          <Stars stars={getStars()} size={20} />
+          <CustomText align="flex-start" size={16}>
             {note} / 5
           </CustomText>
         </ContainerRow>
