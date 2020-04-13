@@ -10,9 +10,8 @@ import COLORS from '../../config/colors';
 function Tutorial({ detail = false }) {
   const handlePress = async () => {
     const message = detail
-      ? '> Toque sobre as estrelas para avaliar as três categorias. \n' +
-        '> Em seguida toque em confirmar. \n' +
-        '> Avalie as demais StartUps seguindo o mesmo processo. \n \n' +
+      ? '> Toque sobre as estrelas para avaliar nas três categorias. \n' +
+        '> Em seguida toque em confirmar. \n\n' +
         'Se ja avaliou esta startUp volte e avalie as demais startups.'
       : '> Toque no cartão da StartUp \n' +
         '> Avalie nas três categorias \n' +
