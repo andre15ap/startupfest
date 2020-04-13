@@ -10,7 +10,7 @@ export const Button = styled.TouchableOpacity`
   background-color: ${COLORS.PRIMARY_TRANSPARENT};
   bottom: 10px;
   right: 10px;
-  padding: 10px 12px;
+  padding: 8px 10px;
 `;
 
 export const Text = styled.Text`

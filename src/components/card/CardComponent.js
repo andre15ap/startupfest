@@ -45,7 +45,7 @@ function CardComponent({
     <Container onPress={handlePress}>
       {isVote && (
         <Check>
-          <Icon name="check" color={COLORS.SECONDARY} size={30} />
+          <Icon name="check" color={COLORS.SECONDARY} size={25} />
         </Check>
       )}
       <StartupHeaderComponent
